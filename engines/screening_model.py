@@ -664,7 +664,12 @@ def model_screening(mpc,cont_list , prev_invest, peak_Pd, mult,cicost, penalty_c
 
     # solver.solve(model)
     # print(results)
-    print ('solver termination condition: ', results.solver.termination_condition)
+    print ('results.solver.termination_condition: ', results.solver.termination_condition)
+
+    print("results.solver.status: ",results.solver.status)
+
+    ## Analyse load curtailment
+    print("Total load curtailment: ", sum(model.Plc[i,j,k].value for i in model.Set['Bus'] for j in model.Set['Cont'] for k in model.Set['Tim']))
 
     
     

@@ -131,11 +131,15 @@ def read_input_data(input_dir, ods_file_name, xlsx_file_name,country, test_case 
     
     ''' Load intervention infor''' 
     # set default line investment data, linear cost of 20£/MVA
-    default_line_list = [50,100,150,200,250,300,500,1000,1500,2000,3000,5000,100000, 150000,500000]
+    # default_line_list = [50,100,150,200,250,300,500,1000,1500,2000,3000,5000,100000, 150000,500000] # original test catalogue by Wangwei
+    # default_line_cost = [1000*10 * i for i in default_line_list]
+    default_line_list = [0.3,0.5,0.75,1.0,2.0,5.0,10.0,20.0,30.0,40.0,50.0,60.0,70.0,80.0,100.0,150.0,200.0,250.0,300.0,500.0,750.0,1000,1500,2000,3000,5000,7500,10000,15000,20000,25000,30000,40000,50000] # extended catalogue for KPIs
     default_line_cost = [1000*10 * i for i in default_line_list]
 
     # set default transformer investment data, linear cost of 30£/MVA
-    default_trans_list = [140, 280, 450, 800,2000,5000,100000]
+    # default_trans_list = [140, 280, 450, 800,2000,5000,100000]
+    # default_trans_cost = [9903 * i for i in default_trans_list] 
+    default_trans_list = [0.3,0.5,0.75,1.0,2.0,5.0,10.0,20.0,30.0,40.0,50.0,60.0,70.0,80.0,100.0,150.0,200.0,250.0,300.0,500.0,750.0,1000,1500,2000,3000,5000,7500,10000,15000,20000,25000,30000,40000,50000] # extended catalogue for KPIs
     default_trans_cost = [9903 * i for i in default_trans_list] 
     
     intv_file = "intervention.json.ods"
@@ -378,7 +382,8 @@ def get_time_series_data(mpc,  base_time_series_data, peak_hour = 19):
     # default_flex = 50
     
     # Define default flex percentage
-    default_flex_percent = 0.1
+    # default_flex_percent = 0.1
+    default_flex_percent = 0.0
     
     peak_hour -= 1 
     
@@ -399,7 +404,7 @@ def get_time_series_data(mpc,  base_time_series_data, peak_hour = 19):
             all_Pflex_dn = base_time_series_data["Downward flexibility"].values.tolist()
             
         except KeyError:
-            print(" * flexibiltiy data not found in the input file, using default data: 10% of peak load as flexibility upwarad and 10% of peak load as donwward to each load bus")
+            print(" * flexibiltiy data not found in the input file, using default data:",default_flex_percent,"% of peak load as flexibility upwarad and",default_flex_percent,"% of peak load as donwward to each load bus")
             
             all_Pflex_up = []
             all_Pflex_dn = []
@@ -491,7 +496,7 @@ def get_time_series_data(mpc,  base_time_series_data, peak_hour = 19):
         peak_Qflex_up = None
         peak_Qflex_dn = None
         
-        print(" * flexibiltiy data not found in the input file, using default data: 10% of peak load as flexibility upwarad and 10% of peak load as donwward to each load bus")
+        print(" * flexibiltiy data not found in the input file, using default data:",default_flex_percent,"% of peak load as flexibility upwarad and ",default_flex_percent,"% of peak load as donwward to each load bus")
         
         for ib in range(mpc["NoBus"]):
             

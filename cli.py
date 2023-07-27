@@ -84,7 +84,7 @@ def run_screening(input_dir, output_dir,ods_file_name, xlsx_file_name, country, 
 def run_investment(input_dir, output_dir, ods_file_name, xlsx_file_name, country, test_case, peak_hour, no_year,run_both,add_load_data,add_load_data_case_name):
     print(" --------- Running the investment model --------- ")
     
-    run_main_investment(input_dir, output_dir, ods_file_name, xlsx_file_name, country, test_case, peak_hour, no_year,run_all) 
+    run_main_investment(input_dir, output_dir, ods_file_name, xlsx_file_name, country, test_case, peak_hour, no_year,run_all,add_load_data,add_load_data_case_name) 
 
 
 

@@ -182,4 +182,5 @@ mpc.gencost = [
 	2	0	0	2	23		0;
 ];
 
-results = runopf(mpc)
+% results = runopf(mpc)
+plot_mpc(mpc)
